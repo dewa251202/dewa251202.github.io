@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+	<title>Posts</title>
+	<subtitle>Mostly about editorials.</subtitle>
+	<link href="https://dewa251202.github.io/en/posts/feed.xml" rel="self" type="application/atom+xml"/>
+    <link href="https://dewa251202.github.io/en/posts/"/>
+	<updated>2024-10-18T00:07:02+00:00</updated>
+	<id>https://dewa251202.github.io/en/posts/feed.xml</id>
+	<entry xml:lang="en">
+		<title>Fourier Things</title>
+		<published>2024-10-18T00:07:02+00:00</published>
+		<updated>2024-10-18T00:07:02+00:00</updated>
+		<link href="https://dewa251202.github.io/en/posts/fourier-things/" type="text/html"/>
+		<id>https://dewa251202.github.io/en/posts/fourier-things/</id>
+		<content type="html">&lt;h2 id=&quot;background&quot;&gt;Background&lt;a class=&quot;zola-anchor&quot; href=&quot;#background&quot; aria-label=&quot;Anchor link for: background&quot;&gt;#&lt;&#x2F;a&gt;&lt;&#x2F;h2&gt;
+&lt;p&gt;This is a post about Fourier series, but only in the convolution part.&lt;&#x2F;p&gt;
+&lt;p&gt;So, the background of this post is that I watched a video about Fourier series. Here is the video that I&#x27;m talking about.
+&lt;div style=&quot;display: flex; justify-content: center;&quot;&gt;
+    &lt;iframe
+        src=&quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;embed&#x2F;7ssUImv8e4w&quot;
+        webkitallowfullscreen
+        mozallowfullscreen
+        allowfullscreen&gt;
+    &lt;&#x2F;iframe&gt;
+&lt;&#x2F;div&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;In the video, he&#x27;s talking about getting a &amp;quot;score&amp;quot; of the phase-shifting process. This score is actually a convolution. The highest score, as well as the point where it produces the highest score, respectively represents relative amplitude and phase of the cosine function used for convolution. This score function is actually another trigonometric function. I&#x27;m representing it with $K * \cos(fx + c)$ where $K$, $f$, and $c$ represent amplitude, frequency, and phase of the score function, respectively.&lt;&#x2F;p&gt;
+&lt;p&gt;What interests me is that we can obtain $K$ and $c$ by getting the definite integral of $f$ multiplied by sine and cosine functions with a frequency of $f$. I can&#x27;t prove why this is true (my brain is not &amp;quot;braining&amp;quot; lately). After trying to prove it myself and finding the relevant problems online, I gave up and consulted with ChatGPT.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;consulting-with-chatgpt&quot;&gt;Consulting with ChatGPT&lt;a class=&quot;zola-anchor&quot; href=&quot;#consulting-with-chatgpt&quot; aria-label=&quot;Anchor link for: consulting-with-chatgpt&quot;&gt;#&lt;&#x2F;a&gt;&lt;&#x2F;h2&gt;
+&lt;p&gt;Here&#x27;s the interaction that I had with ChatGPT.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;Me:&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;Suppose that I have a signal $f$ of $x$ ($f(x)$) defined from $-\pi$ to $\pi$. I&#x27;m going to convolve it with a cosine function. So the resulting convolution is
+$$h(t) = \int_{-\pi}^{\pi} f(x) * cos(t - x) dx$$
+$h$ is another trigonometric function. I can represent $h(t)$ as $h(t) = K * cos(x + c)$.
+Now I can multiply $f$ with sine and cosine function and integrate them. Let the result be $A$ and $B$ correspondingly. So
+$$A = \int_{-\pi}^{\pi} f(x) * sin(x) dx$$
+$$B = \int_{-\pi}^{\pi} f(x) * cos(x) dx$$
+The interesting part is $K = \sqrt{A^2 + B^2}$ and $c = \text{atan2}(-A, B)$.&lt;&#x2F;p&gt;
+&lt;p&gt;How do I prove that $K$ and $c$ can be obtained by integrating multiplication of $f$ with sine and cosine function?&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;ChatGPT 4o mini&lt;&#x2F;strong&gt;:&lt;&#x2F;p&gt;
+&lt;p&gt;To prove that $K$ and $c$ can be obtained by integrating the multiplication of $f$ with sine and cosine functions, let&#x27;s break down the steps involved in the convolution and how it relates to $A$ and $B$.&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Convolution Definition&lt;&#x2F;strong&gt;: The convolution of $f(x)$ with $\cos(t - x)$ is given by:
+$$h(t) = \int_{-\pi}^{\pi} f(x) \cos(t - x) , dx$$&lt;&#x2F;p&gt;
+&lt;p&gt;Using the trigonometric identity $\cos(t - x) = \cos(t)\cos(x) + \sin(t)\sin(x)$, we can rewrite this as:
+$$h(t) = \cos(t) \int_{-\pi}^{\pi} f(x) \cos(x) , dx + \sin(t) \int_{-\pi}^{\pi} f(x) \sin(x) , dx$$&lt;&#x2F;p&gt;
+&lt;p&gt;This allows us to express $h(t)$ in terms of the integrals $A$ and $B$:
+$$A = \int_{-\pi}^{\pi} f(x) \sin(x) , dx, \quad B = \int_{-\pi}^{\pi} f(x) \cos(x) , dx$$&lt;&#x2F;p&gt;
+&lt;p&gt;Thus, we can rewrite $h(t)$ as:
+$$h(t) = B \cos(t) + A \sin(t)$$&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Representing $h(t)$&lt;&#x2F;strong&gt;: We want to express $h(t)$ in the form:
+$$h(t) = K \cos(t + c)$$
+Using the angle addition formula for cosine, we expand this:
+$$K \cos(t + c) = K (\cos(t) \cos(c) - \sin(t) \sin(c))$$
+This gives us:
+$$h(t) = K \cos(c) \cos(t) - K \sin(c) \sin(t)$$&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Matching Coefficients&lt;&#x2F;strong&gt;: By comparing coefficients from the two expressions for $h(t)$:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;The coefficient of $\cos(t)$ gives us:
+$$B = K \cos(c)$$&lt;&#x2F;li&gt;
+&lt;li&gt;The coefficient of $\sin(t)$ gives us:
+$$A = -K \sin(c)$$&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Finding $K$ and $c$&lt;&#x2F;strong&gt;: To find $K$ and $c$, we can use these relationships:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Squaring both equations:
+$$K^2 \cos^2(c) = B^2, \quad K^2 \sin^2(c) = A^2$$&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;Adding these equations:
+$$K^2 (\cos^2(c) + \sin^2(c)) = A^2 + B^2 \Rightarrow K^2 = A^2 + B^2$$&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;Thus, we find:
+$$K = \sqrt{A^2 + B^2}$$&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;For $c$, we use the relationships:
+$$\tan(c) = -\frac{A}{B} \Rightarrow c = \tan^{-1}\left(-\frac{A}{B}\right) = \text{atan2}(-A, B)$$&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;In conclusion, $K = \sqrt{A^2 + B^2}$ and $c = \text{atan2}(-A, B)$ can indeed be derived from the integrals $A$ and $B$, confirming the relationships you stated.&lt;&#x2F;p&gt;
+&lt;p&gt;It turns out to be very simple. I just had to use a trigonometric identity to transform the convolution into another form. ChatGPT sure is one of the most useful tools that has ever existed.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;bonus&quot;&gt;Bonus&lt;a class=&quot;zola-anchor&quot; href=&quot;#bonus&quot; aria-label=&quot;Anchor link for: bonus&quot;&gt;#&lt;&#x2F;a&gt;&lt;&#x2F;h2&gt;
+&lt;p&gt;Here&#x27;s a Desmos graph that I used for my experiment.&lt;&#x2F;p&gt;
+&lt;iframe src=&quot;https:&#x2F;&#x2F;www.desmos.com&#x2F;calculator&#x2F;rf5dmfu6nn&quot; width=&quot;100%&quot; height=&quot;500&quot; style=&quot;border: 1px solid #ccc&quot; frameborder=0&gt;&lt;&#x2F;iframe&gt;</content>
+	</entry>
+	<entry xml:lang="en">
+		<title>Multiple Languages Site</title>
+		<published>2024-06-22T01:11:07+00:00</published>
+		<updated>2024-06-22T08:12:16+00:00</updated>
+		<link href="https://dewa251202.github.io/en/posts/multiple-languages-site/" type="text/html"/>
+		<id>https://dewa251202.github.io/en/posts/multiple-languages-site/</id>
+		<content type="html">&lt;p&gt;After editing template files and configurations on this site, finally several pages written in other languages can be accessed! Currently, the site only supports two languages: Indonesian and English. However, there is no language switch button yet. Therefore, you can add &lt;code&gt;en&lt;&#x2F;code&gt; to access the site in English. Here are the examples:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;&#x2F;&quot;&gt;Indonesian&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;&#x2F;en&#x2F;&quot;&gt;English&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+</content>
+	</entry>
+	<entry xml:lang="en">
+		<title>Non-Faktorisasi</title>
+		<published>2024-06-20T07:15:50+00:00</published>
+		<updated>2024-06-20T11:41:31+00:00</updated>
+		<link href="https://dewa251202.github.io/en/posts/non-faktorisasi/" type="text/html"/>
+		<id>https://dewa251202.github.io/en/posts/non-faktorisasi/</id>
+		<content type="html">&lt;h1 id=&quot;problem&quot;&gt;Problem&lt;a class=&quot;zola-anchor&quot; href=&quot;#problem&quot; aria-label=&quot;Anchor link for: problem&quot;&gt;#&lt;&#x2F;a&gt;&lt;&#x2F;h1&gt;
+&lt;h2 id=&quot;information&quot;&gt;Information&lt;a class=&quot;zola-anchor&quot; href=&quot;#information&quot; aria-label=&quot;Anchor link for: information&quot;&gt;#&lt;&#x2F;a&gt;&lt;&#x2F;h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Source: CompFest 7 - Final CPC Junior&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;archive&quot;&gt;Archive&lt;a class=&quot;zola-anchor&quot; href=&quot;#archive&quot; aria-label=&quot;Anchor link for: archive&quot;&gt;#&lt;&#x2F;a&gt;&lt;&#x2F;h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a rel=&quot;noopener nofollow noreferrer&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;tlx.toki.id&#x2F;problems&#x2F;compfest-7-jcpc-final&#x2F;B&quot;&gt;TLX&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;summary&quot;&gt;Summary&lt;a class=&quot;zola-anchor&quot; href=&quot;#summary&quot; aria-label=&quot;Anchor link for: summary&quot;&gt;#&lt;&#x2F;a&gt;&lt;&#x2F;h2&gt;
+&lt;p&gt;Define $M = A_1 \cdot A_2 \cdot \ldots \cdot A_N$. Count how many integers are less than or equal to $M$ and coprime with $M$. Two integers $A$ and $B$ are said to be coprime if and only if the greatest common divisor between $A$ and $B$ is $1$.&lt;&#x2F;p&gt;
+&lt;hr &#x2F;&gt;
+&lt;h1 id=&quot;solution&quot;&gt;Solution&lt;a class=&quot;zola-anchor&quot; href=&quot;#solution&quot; aria-label=&quot;Anchor link for: solution&quot;&gt;#&lt;&#x2F;a&gt;&lt;&#x2F;h1&gt;
+&lt;h2 id=&quot;hint&quot;&gt;Hint&lt;a class=&quot;zola-anchor&quot; href=&quot;#hint&quot; aria-label=&quot;Anchor link for: hint&quot;&gt;#&lt;&#x2F;a&gt;&lt;&#x2F;h2&gt;
+&lt;p&gt;&lt;div class=&quot;spoiler&quot;&gt;
+    &lt;span&gt;+ &lt;&#x2F;span&gt;&lt;div class=&quot;spoiler-title&quot;&gt;Hint 1&lt;&#x2F;div&gt;
+    &lt;div class=&quot;spoiler-content hidden&quot;&gt;There is a function to count how many integers are less than or equal to $M$ and coprime with $M$.&lt;&#x2F;div&gt;
+&lt;&#x2F;div&gt;
+&lt;div class=&quot;spoiler&quot;&gt;
+    &lt;span&gt;+ &lt;&#x2F;span&gt;&lt;div class=&quot;spoiler-title&quot;&gt;Hint 2&lt;&#x2F;div&gt;
+    &lt;div class=&quot;spoiler-content hidden&quot;&gt;The function mentioned in Hint 1 is a &lt;a rel=&quot;noopener nofollow noreferrer&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Multiplicative_function&quot;&gt;multiplicative function&lt;&#x2F;a&gt;.&lt;&#x2F;div&gt;
+&lt;&#x2F;div&gt;&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;explanation&quot;&gt;Explanation&lt;a class=&quot;zola-anchor&quot; href=&quot;#explanation&quot; aria-label=&quot;Anchor link for: explanation&quot;&gt;#&lt;&#x2F;a&gt;&lt;&#x2F;h2&gt;
+&lt;p&gt;This problem is divided into three subtasks. First subtask can be solved easily by checking if $gcd(i, M) = 1$ for each $i$ from $1$ to $M$. This solution runs in $O(M \log {M})$ time.&lt;&#x2F;p&gt;
+&lt;p&gt;To solve the second and third subtasks more efficiently, we can use &lt;a rel=&quot;noopener nofollow noreferrer&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Euler%27s_totient_function&quot;&gt;Euler&#x27;s totient function&lt;&#x2F;a&gt;, denoted by the Greek letter $\varphi$ or $\phi$. The answer to this problem is $\varphi(M)$. Let $p_1, p_2, ..., p_k$ be the prime factors of $M$. This function is defined as:
+$$\varphi(M) = M \cdot \left(1 - \frac{1}{p_1}\right) \cdot \left(1 - \frac{1}{p_2}\right) \cdot \ldots \cdot \left(1 - \frac{1}{p_k}\right)$$&lt;&#x2F;p&gt;
+&lt;p&gt;Finding all prime factors of $M$ can be done with a time complexity of $O(\sqrt{M})$. This is sufficient to solve the second subtask but cannot be used for the third subtask. To solve the third subtask, we can use the property of $\varphi$, which states that $\varphi$ is a multiplicative function. In other words, for two integers $a$ and $b$ that are coprime with each other, the following applies:
+$$\varphi(a \cdot b) = \varphi(a) \cdot \varphi(b)$$&lt;&#x2F;p&gt;
+&lt;p&gt;For easier computation, we first factorize $M$. Here is the prime factorization of $M$:
+$$M = p_1^{e_1} \cdot p_2^{e_2} \cdot \ldots \cdot p_k^{e_k}$$&lt;&#x2F;p&gt;
+&lt;p&gt;So,
+$$\begin{aligned}
+\varphi(M) &amp;amp;= \varphi(p_1^{e_1}) \cdot \varphi(p_2^{e_2}) \cdot \ldots \cdot \varphi(p_k^{e_k}) \\
+&amp;amp;= p_1^{e_1}\left(1 - \frac{1}{p_1}\right) \cdot p_2^{e_2}\left(1 - \frac{1}{p_2}\right) \cdot \ldots \cdot p_k^{e_k}\left(1 - \frac{1}{p_k}\right) \\
+&amp;amp;= p_1^{e_1}\left(\frac{p_1 - 1}{p_1}\right) \cdot p_2^{e_2}\left(\frac{p_2 - 1}{p_2}\right) \cdot \ldots \cdot p_k^{e_k}\left(\frac{p_k - 1}{p_k}\right) \\
+&amp;amp;= p_1^{e_1 - 1}(p_1 - 1) \cdot p_2^{e_2 - 1}(p_2 - 1) \cdot \ldots \cdot p_k^{e_k - 1}(p_k - 1)
+\end{aligned}$$&lt;&#x2F;p&gt;
+&lt;p&gt;Given the inputs $A_1, A_2, \ldots, A_N$, we can factorize $A_i$ ($1 \le i \le N$) and sum the exponents for each prime factor of $M$.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;code&quot;&gt;Code&lt;a class=&quot;zola-anchor&quot; href=&quot;#code&quot; aria-label=&quot;Anchor link for: code&quot;&gt;#&lt;&#x2F;a&gt;&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;cpp&quot; class=&quot;language-cpp z-code&quot;&gt;&lt;code class=&quot;language-cpp&quot; data-lang=&quot;cpp&quot;&gt;&lt;span class=&quot;z-source z-c++&quot;&gt;&lt;span class=&quot;z-meta z-preprocessor z-include z-c++&quot;&gt;&lt;span class=&quot;z-keyword z-control z-import z-include z-c++&quot;&gt;#include&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-quoted z-other z-lt-gt z-include z-c++&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-begin z-c++&quot;&gt;&amp;lt;&lt;&#x2F;span&gt;iostream&lt;span class=&quot;z-punctuation z-definition z-string z-end z-c++&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-preprocessor z-include z-c++&quot;&gt;&lt;span class=&quot;z-keyword z-control z-import z-include z-c++&quot;&gt;#include&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-quoted z-other z-lt-gt z-include z-c++&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-begin z-c++&quot;&gt;&amp;lt;&lt;&#x2F;span&gt;map&lt;span class=&quot;z-punctuation z-definition z-string z-end z-c++&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-control z-c++&quot;&gt;using&lt;&#x2F;span&gt; &lt;span class=&quot;z-keyword z-control z-c++&quot;&gt;namespace&lt;&#x2F;span&gt; std&lt;span class=&quot;z-punctuation z-terminator z-c++&quot;&gt;;&lt;&#x2F;span&gt;
+&lt;span class=&quot;z-storage z-type z-c++&quot;&gt;typedef&lt;&#x2F;span&gt; &lt;span class=&quot;z-storage z-type z-c&quot;&gt;long&lt;&#x2F;span&gt; &lt;span class=&quot;z-storage z-type z-c&quot;&gt;long&lt;&#x2F;span&gt; &lt;span class=&quot;z-storage z-type z-c&quot;&gt;int&lt;&#x2F;span&gt; &lt;span class=&quot;z-entity z-name z-type z-typedef z-c++&quot;&gt;lli&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-terminator z-c++&quot;&gt;;&lt;&#x2F;span&gt;
+
+&lt;span class=&quot;z-storage z-modifier z-c++&quot;&gt;const&lt;&#x2F;span&gt; &lt;span class=&quot;z-storage z-type z-c&quot;&gt;int&lt;&#x2F;span&gt; MOD &lt;span class=&quot;z-keyword z-operator z-assignment z-c&quot;&gt;=&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-numeric z-float z-decimal z-c++&quot;&gt;1E9&lt;&#x2F;span&gt; &lt;span class=&quot;z-keyword z-operator z-arithmetic z-c&quot;&gt;+&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-c++&quot;&gt;7&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-terminator z-c++&quot;&gt;;&lt;&#x2F;span&gt;
+
+&lt;span class=&quot;z-storage z-type z-c&quot;&gt;int&lt;&#x2F;span&gt; N&lt;span class=&quot;z-punctuation z-separator z-c++&quot;&gt;,&lt;&#x2F;span&gt; Ai&lt;span class=&quot;z-punctuation z-terminator z-c++&quot;&gt;;&lt;&#x2F;span&gt;
+map &lt;span class=&quot;z-punctuation z-section z-generic z-begin z-c++&quot;&gt;&amp;lt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-storage z-type z-c&quot;&gt;int&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-c++&quot;&gt;,&lt;&#x2F;span&gt; &lt;span class=&quot;z-storage z-type z-c&quot;&gt;int&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-section z-generic z-end z-c++&quot;&gt;&amp;gt;&lt;&#x2F;span&gt; powers&lt;span class=&quot;z-punctuation z-terminator z-c++&quot;&gt;;&lt;&#x2F;span&gt;
+
+&lt;span class=&quot;z-storage z-type z-c&quot;&gt;int&lt;&#x2F;span&gt; &lt;span class=&quot;z-meta z-function z-c++&quot;&gt;&lt;span class=&quot;z-meta z-toc-list z-full-identifier z-c++&quot;&gt;&lt;span class=&quot;z-entity z-name z-function z-c++&quot;&gt;Pow&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function z-parameters z-c++&quot;&gt;&lt;span class=&quot;z-meta z-group z-c++&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-group z-begin z-c++&quot;&gt;(&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function z-parameters z-c++&quot;&gt;&lt;span class=&quot;z-meta z-group z-c++&quot;&gt;lli &lt;span class=&quot;z-variable z-parameter z-c++&quot;&gt;x&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-c++&quot;&gt;,&lt;&#x2F;span&gt; &lt;span class=&quot;z-storage z-type z-c&quot;&gt;int&lt;&#x2F;span&gt; &lt;span class=&quot;z-variable z-parameter z-c++&quot;&gt;y&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-section z-group z-end z-c++&quot;&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function z-c++&quot;&gt;&lt;span class=&quot;z-meta z-block z-c++&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-block z-begin z-c++&quot;&gt;{&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function z-c++&quot;&gt;&lt;span class=&quot;z-meta z-block z-c++&quot;&gt;
+    lli ret &lt;span class=&quot;z-keyword z-operator z-assignment z-c&quot;&gt;=&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-c++&quot;&gt;1&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-terminator z-c++&quot;&gt;;&lt;&#x2F;span&gt;
+    &lt;span class=&quot;z-keyword z-control z-c++&quot;&gt;while&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-group z-c++&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-group z-begin z-c++&quot;&gt;(&lt;&#x2F;span&gt;y&lt;span class=&quot;z-punctuation z-section z-group z-end z-c++&quot;&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-block z-c++&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-block z-begin z-c++&quot;&gt;{&lt;&#x2F;span&gt;
+        &lt;span class=&quot;z-keyword z-control z-c++&quot;&gt;if&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-group z-c++&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-group z-begin z-c++&quot;&gt;(&lt;&#x2F;span&gt;y &lt;span class=&quot;z-keyword z-operator z-c&quot;&gt;&amp;amp;&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-c++&quot;&gt;1&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-section z-group z-end z-c++&quot;&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt; &lt;span class=&quot;z-meta z-group z-c++&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-group z-begin z-c++&quot;&gt;(&lt;&#x2F;span&gt;ret &lt;span class=&quot;z-keyword z-operator z-assignment z-augmented z-c&quot;&gt;*=&lt;&#x2F;span&gt; x&lt;span class=&quot;z-punctuation z-section z-group z-end z-c++&quot;&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt; &lt;span class=&quot;z-keyword z-operator z-assignment z-augmented z-c&quot;&gt;%=&lt;&#x2F;span&gt; MOD&lt;span class=&quot;z-punctuation z-terminator z-c++&quot;&gt;;&lt;&#x2F;span&gt;
+        &lt;span class=&quot;z-meta z-group z-c++&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-group z-begin z-c++&quot;&gt;(&lt;&#x2F;span&gt;x &lt;span class=&quot;z-keyword z-operator z-assignment z-augmented z-c&quot;&gt;*=&lt;&#x2F;span&gt; x&lt;span class=&quot;z-punctuation z-section z-group z-end z-c++&quot;&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt; &lt;span class=&quot;z-keyword z-operator z-assignment z-augmented z-c&quot;&gt;%=&lt;&#x2F;span&gt; MOD&lt;span class=&quot;z-punctuation z-terminator z-c++&quot;&gt;;&lt;&#x2F;span&gt;
+        y &lt;span class=&quot;z-keyword z-operator z-assignment z-augmented z-c&quot;&gt;&amp;gt;&amp;gt;=&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-c++&quot;&gt;1&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-terminator z-c++&quot;&gt;;&lt;&#x2F;span&gt;
+    &lt;span class=&quot;z-punctuation z-section z-block z-end z-c++&quot;&gt;}&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+    &lt;span class=&quot;z-keyword z-control z-flow z-return z-c++&quot;&gt;return&lt;&#x2F;span&gt; ret&lt;span class=&quot;z-punctuation z-terminator z-c++&quot;&gt;;&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function z-c++&quot;&gt;&lt;span class=&quot;z-meta z-block z-c++&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-block z-end z-c++&quot;&gt;}&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+
+&lt;span class=&quot;z-storage z-type z-c&quot;&gt;int&lt;&#x2F;span&gt; &lt;span class=&quot;z-meta z-function z-c++&quot;&gt;&lt;span class=&quot;z-meta z-toc-list z-full-identifier z-c++&quot;&gt;&lt;span class=&quot;z-entity z-name z-function z-c++&quot;&gt;main&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function z-parameters z-c++&quot;&gt;&lt;span class=&quot;z-meta z-group z-c++&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-group z-begin z-c++&quot;&gt;(&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function z-parameters z-c++&quot;&gt;&lt;span class=&quot;z-meta z-group z-c++&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-group z-end z-c++&quot;&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function z-c++&quot;&gt;&lt;span class=&quot;z-meta z-block z-c++&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-block z-begin z-c++&quot;&gt;{&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function z-c++&quot;&gt;&lt;span class=&quot;z-meta z-block z-c++&quot;&gt;
+    cin &lt;span class=&quot;z-keyword z-operator z-arithmetic z-c&quot;&gt;&amp;gt;&amp;gt;&lt;&#x2F;span&gt; N&lt;span class=&quot;z-punctuation z-terminator z-c++&quot;&gt;;&lt;&#x2F;span&gt;
+
+    &lt;span class=&quot;z-keyword z-control z-c++&quot;&gt;while&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-group z-c++&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-group z-begin z-c++&quot;&gt;(&lt;&#x2F;span&gt;N&lt;span class=&quot;z-keyword z-operator z-arithmetic z-c&quot;&gt;--&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-section z-group z-end z-c++&quot;&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-block z-c++&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-block z-begin z-c++&quot;&gt;{&lt;&#x2F;span&gt;
+        cin &lt;span class=&quot;z-keyword z-operator z-arithmetic z-c&quot;&gt;&amp;gt;&amp;gt;&lt;&#x2F;span&gt; Ai&lt;span class=&quot;z-punctuation z-terminator z-c++&quot;&gt;;&lt;&#x2F;span&gt;
+        &lt;span class=&quot;z-keyword z-control z-c++&quot;&gt;for&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-group z-c++&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-group z-begin z-c++&quot;&gt;(&lt;&#x2F;span&gt;&lt;span class=&quot;z-storage z-type z-c&quot;&gt;int&lt;&#x2F;span&gt; i &lt;span class=&quot;z-keyword z-operator z-assignment z-c&quot;&gt;=&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-c++&quot;&gt;2&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-terminator z-c++&quot;&gt;;&lt;&#x2F;span&gt; i &lt;span class=&quot;z-keyword z-operator z-c&quot;&gt;*&lt;&#x2F;span&gt; i &lt;span class=&quot;z-keyword z-operator z-comparison z-c&quot;&gt;&amp;lt;=&lt;&#x2F;span&gt; Ai&lt;span class=&quot;z-punctuation z-terminator z-c++&quot;&gt;;&lt;&#x2F;span&gt; i&lt;span class=&quot;z-keyword z-operator z-arithmetic z-c&quot;&gt;++&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-section z-group z-end z-c++&quot;&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-block z-c++&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-block z-begin z-c++&quot;&gt;{&lt;&#x2F;span&gt;
+            &lt;span class=&quot;z-keyword z-control z-c++&quot;&gt;while&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-group z-c++&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-group z-begin z-c++&quot;&gt;(&lt;&#x2F;span&gt;Ai &lt;span class=&quot;z-keyword z-operator z-arithmetic z-c&quot;&gt;%&lt;&#x2F;span&gt; i &lt;span class=&quot;z-keyword z-operator z-comparison z-c&quot;&gt;==&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-c++&quot;&gt;0&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-section z-group z-end z-c++&quot;&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-block z-c++&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-block z-begin z-c++&quot;&gt;{&lt;&#x2F;span&gt;
+                Ai &lt;span class=&quot;z-keyword z-operator z-assignment z-augmented z-c&quot;&gt;&#x2F;=&lt;&#x2F;span&gt; i&lt;span class=&quot;z-punctuation z-terminator z-c++&quot;&gt;;&lt;&#x2F;span&gt;
+                powers&lt;span class=&quot;z-meta z-brackets z-c++&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-brackets z-begin z-c++&quot;&gt;[&lt;&#x2F;span&gt;i&lt;span class=&quot;z-punctuation z-section z-brackets z-end z-c++&quot;&gt;]&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator z-arithmetic z-c&quot;&gt;++&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-terminator z-c++&quot;&gt;;&lt;&#x2F;span&gt;
+            &lt;span class=&quot;z-punctuation z-section z-block z-end z-c++&quot;&gt;}&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+        &lt;span class=&quot;z-punctuation z-section z-block z-end z-c++&quot;&gt;}&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+        &lt;span class=&quot;z-keyword z-control z-c++&quot;&gt;if&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-group z-c++&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-group z-begin z-c++&quot;&gt;(&lt;&#x2F;span&gt;Ai &lt;span class=&quot;z-keyword z-operator z-comparison z-c&quot;&gt;!=&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-c++&quot;&gt;1&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-section z-group z-end z-c++&quot;&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt; powers&lt;span class=&quot;z-meta z-brackets z-c++&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-brackets z-begin z-c++&quot;&gt;[&lt;&#x2F;span&gt;Ai&lt;span class=&quot;z-punctuation z-section z-brackets z-end z-c++&quot;&gt;]&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator z-arithmetic z-c&quot;&gt;++&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-terminator z-c++&quot;&gt;;&lt;&#x2F;span&gt;
+    &lt;span class=&quot;z-punctuation z-section z-block z-end z-c++&quot;&gt;}&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+
+    lli ans &lt;span class=&quot;z-keyword z-operator z-assignment z-c&quot;&gt;=&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-c++&quot;&gt;1&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-terminator z-c++&quot;&gt;;&lt;&#x2F;span&gt;
+    &lt;span class=&quot;z-keyword z-control z-c++&quot;&gt;for&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-group z-c++&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-group z-begin z-c++&quot;&gt;(&lt;&#x2F;span&gt;&lt;span class=&quot;z-storage z-modifier z-c++&quot;&gt;const&lt;&#x2F;span&gt; &lt;span class=&quot;z-storage z-type z-c&quot;&gt;auto&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator z-c&quot;&gt;&amp;amp;&lt;&#x2F;span&gt; p &lt;span class=&quot;z-keyword z-operator z-ternary z-c&quot;&gt;:&lt;&#x2F;span&gt; powers&lt;span class=&quot;z-punctuation z-section z-group z-end z-c++&quot;&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-block z-c++&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-block z-begin z-c++&quot;&gt;{&lt;&#x2F;span&gt;
+        &lt;span class=&quot;z-meta z-group z-c++&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-group z-begin z-c++&quot;&gt;(&lt;&#x2F;span&gt;ans &lt;span class=&quot;z-keyword z-operator z-assignment z-augmented z-c&quot;&gt;*=&lt;&#x2F;span&gt; p&lt;span class=&quot;z-punctuation z-accessor z-dot z-c++&quot;&gt;.&lt;&#x2F;span&gt;&lt;span class=&quot;z-variable z-other z-readwrite z-member z-c++&quot;&gt;first&lt;&#x2F;span&gt; &lt;span class=&quot;z-keyword z-operator z-arithmetic z-c&quot;&gt;-&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-c++&quot;&gt;1&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-section z-group z-end z-c++&quot;&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt; &lt;span class=&quot;z-keyword z-operator z-assignment z-augmented z-c&quot;&gt;%=&lt;&#x2F;span&gt; MOD&lt;span class=&quot;z-punctuation z-terminator z-c++&quot;&gt;;&lt;&#x2F;span&gt;
+        ans &lt;span class=&quot;z-keyword z-operator z-assignment z-augmented z-c&quot;&gt;*=&lt;&#x2F;span&gt; &lt;span class=&quot;z-meta z-function-call z-c++&quot;&gt;&lt;span class=&quot;z-variable z-function z-c++&quot;&gt;Pow&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-group z-c++&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-group z-begin z-c++&quot;&gt;(&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-c++&quot;&gt;&lt;span class=&quot;z-meta z-group z-c++&quot;&gt;p&lt;span class=&quot;z-punctuation z-accessor z-dot z-c++&quot;&gt;.&lt;&#x2F;span&gt;&lt;span class=&quot;z-variable z-other z-readwrite z-member z-c++&quot;&gt;first&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-c++&quot;&gt;,&lt;&#x2F;span&gt; p&lt;span class=&quot;z-punctuation z-accessor z-dot z-c++&quot;&gt;.&lt;&#x2F;span&gt;&lt;span class=&quot;z-variable z-other z-readwrite z-member z-c++&quot;&gt;second&lt;&#x2F;span&gt; &lt;span class=&quot;z-keyword z-operator z-arithmetic z-c&quot;&gt;-&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-c++&quot;&gt;1&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-c++&quot;&gt;&lt;span class=&quot;z-meta z-group z-c++&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-group z-end z-c++&quot;&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-terminator z-c++&quot;&gt;;&lt;&#x2F;span&gt;
+        ans &lt;span class=&quot;z-keyword z-operator z-assignment z-augmented z-c&quot;&gt;%=&lt;&#x2F;span&gt; MOD&lt;span class=&quot;z-punctuation z-terminator z-c++&quot;&gt;;&lt;&#x2F;span&gt;
+    &lt;span class=&quot;z-punctuation z-section z-block z-end z-c++&quot;&gt;}&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+
+    cout &lt;span class=&quot;z-keyword z-operator z-arithmetic z-c&quot;&gt;&amp;lt;&amp;lt;&lt;&#x2F;span&gt; ans &lt;span class=&quot;z-keyword z-operator z-arithmetic z-c&quot;&gt;&amp;lt;&amp;lt;&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-quoted z-single z-c&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-begin z-c&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;span class=&quot;z-constant z-character z-escape z-c&quot;&gt;\n&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-end z-c&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-terminator z-c++&quot;&gt;;&lt;&#x2F;span&gt;
+    &lt;span class=&quot;z-keyword z-control z-flow z-return z-c++&quot;&gt;return&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-c++&quot;&gt;0&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-terminator z-c++&quot;&gt;;&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function z-c++&quot;&gt;&lt;span class=&quot;z-meta z-block z-c++&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-block z-end z-c++&quot;&gt;}&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+</content>
+	</entry>
+</feed>

@@ -1,0 +1,24 @@
+#play-btn {
+    border: 2px solid var(--primary-color);
+    cursor: pointer;
+    color: var(--text-color);
+    background-color: transparent;
+    padding-inline: 0.5em;
+    padding-block: 0.25em;
+    margin-bottom: 1em;
+}
+
+#play-btn:hover {
+    background-color: var(--primary-color);
+}
+
+#local-video {
+    width: 100%;
+    border: 1.5px solid var(--primary-color);
+}
+
+#token {
+    border: 1.5px solid var(--primary-color);
+    color: var(--text-color);
+    background-color: transparent;
+}

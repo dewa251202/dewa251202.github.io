@@ -1,0 +1,16 @@
+.spoiler-title {
+    border-bottom: 1px dashed;
+    width: fit-content;
+    cursor: pointer;
+    display: inline;
+}
+
+.spoiler-content {
+    border: 1px solid;
+    padding-inline: calc(0.5 * var(--paragraph-font-size));
+    line-height: 1.5;
+}
+
+.hidden {
+    display: none;
+}

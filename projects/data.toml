@@ -1,0 +1,15 @@
+[[project]]
+name = "Main Batu Lagi"
+desc = "A combinatorial impartial game"
+tags = ["game-theory"]
+links = [
+  { name = "website", url = "https://sheradhien.netlify.app/misc/mbl" }
+]
+
+# [[project]]
+# name = ""
+# desc = ""
+# tags = ["", ""]
+# links = [
+#   { name = "", url = "" },
+# ]
